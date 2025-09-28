@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Enhancer - Тестовая страница</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #5f6368;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .test-section {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .test-section .icon {
+            width: 32px;
+            height: 32px;
+            background: #1a73e8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .compose-area {
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 150px;
+            background: white;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .compose-area:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .compose-area[contenteditable="true"]:empty:before {
+            content: "Начните вводить текст здесь или используйте функции Email Enhancer...";
+            color: #9aa0a6;
+            font-style: italic;
+        }
+
+        .instructions {
+            background: #e8f0fe;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .instructions h3 {
+            color: #1a73e8;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 4px;
+            color: #5f6368;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-card .emoji {
+            font-size: 24px;
+        }
+
+        .feature-card p {
+            color: #5f6368;
+            margin-bottom: 16px;
+        }
+
+        .feature-card .demo-text {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            color: #333;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .status-bar {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .status-bar h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .status-bar p {
+            opacity: 0.9;
+        }
+
+        .installation-guide {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+
+        .installation-guide h3 {
+            color: #856404;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .installation-guide ol {
+            margin-left: 20px;
+        }
+
+        .installation-guide li {
+            margin-bottom: 8px;
+            color: #856404;
+        }
+
+        .code {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            color: #d73a49;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #5f6368;
+            border: 1px solid #e1e5e9;
+        }
+
+        .btn-secondary:hover {
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .test-section {
+                padding: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Email Enhancer</h1>
+            <p>Тестовая страница для демонстрации функций браузерного расширения для улучшения работы с электронной почтой</p>
+        </div>
+
+        <div class="status-bar">
+            <h3>Статус расширения</h3>
+            <p id="extension-status">Проверка установки расширения...</p>
+        </div>
+
+        <div class="installation-guide">
+            <h3>📦 Как установить расширение для тестирования</h3>
+            <ol>
+                <li>Откройте Chrome и перейдите в <span class="code">chrome://extensions/</span></li>
+                <li>Включите "Режим разработчика" в правом верхнем углу</li>
+                <li>Нажмите "Загрузить распакованное расширение"</li>
+                <li>Выберите папку с файлами расширения</li>
+                <li>Обновите эту страницу для проверки работы</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>
+                <span class="icon">1</span>
+                Тест основных функций
+            </h2>
+            
+            <div class="instructions">
+                <h3>Инструкции по тестированию:</h3>
+                <ul>
+                    <li>Введите текст в поле ниже</li>
+                    <li>Используйте панель инструментов Email Enhancer (должна появиться под полем)</li>
+                    <li>Протестируйте функции записи голоса, исправления и улучшения текста</li>
+                    <li>Попробуйте выделить часть текста и применить функции только к выделенному</li>
+                </ul>
+            </div>
+
+            <div class="compose-area" contenteditable="true" id="test-compose-1">
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>
+                <span class="icon">2</span>
+                Тест с предзаполненным текстом
+            </h2>
+            
+            <div class="instructions">
+                <h3>Тестирование исправления ошибок:</h3>
+                <ul>
+                    <li>В поле ниже есть текст с ошибками</li>
+                    <li>Используйте функцию "Исправить текст" для автоматического исправления</li>
+                    <li>Попробуйте разные стили улучшения текста</li>
+                </ul>
+            </div>
+
+            <div class="compose-area" contenteditable="true" id="test-compose-2">
+                Привет! Как дела? Я хотел бы обсудить с вами важный вопрос по поводу нашего проекта. Можем ли мы встретится завтра в 15:00? Буду ждать вашего ответа.
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>
+                <span class="icon">3</span>
+                Тест многоязычности
+            </h2>
+            
+            <div class="instructions">
+                <h3>Тестирование языковых функций:</h3>
+                <ul>
+                    <li>Измените язык обработки текста в панели инструментов</li>
+                    <li>Введите текст на разных языках</li>
+                    <li>Проверьте работу функций с разными языками</li>
+                </ul>
+            </div>
+
+            <div class="compose-area" contenteditable="true" id="test-compose-3">
+                Hello! How are you doing today? I hope everything is going well.
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">🎤</span>
+                    Голосовой ввод
+                </h3>
+                <p>Записывайте голосовые сообщения и автоматически преобразуйте их в текст</p>
+                <div class="demo-text">
+                    Нажмите на иконку микрофона и начните говорить. Текст будет автоматически вставлен в поле ввода.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">✅</span>
+                    Исправление ошибок
+                </h3>
+                <p>Автоматическое исправление орфографических, грамматических и пунктуационных ошибок</p>
+                <div class="demo-text">
+                    Выделите текст с ошибками и нажмите кнопку исправления для автоматической коррекции.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">🤖</span>
+                    AI-улучшение
+                </h3>
+                <p>Улучшение текста с помощью искусственного интеллекта в разных стилях</p>
+                <div class="demo-text">
+                    Выберите стиль (дружелюбный, официальный, краткий, убеждающий, технический) и улучшите текст.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">🌍</span>
+                    Многоязычность
+                </h3>
+                <p>Поддержка 6 языков: русский, английский, испанский, португальский, арабский, французский</p>
+                <div class="demo-text">
+                    Переключайте языки обработки и интерфейса для работы с международной корреспонденцией.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">⚙️</span>
+                    Настройки
+                </h3>
+                <p>Гибкая настройка функций, языков и поведения расширения</p>
+                <div class="demo-text">
+                    Откройте настройки для персонализации работы расширения под ваши потребности.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>
+                    <span class="emoji">📧</span>
+                    Интеграция
+                </h3>
+                <p>Работает с Gmail, Yandex Mail, Outlook, Mail.ru</p>
+                <div class="demo-text">
+                    Расширение автоматически интегрируется с популярными почтовыми клиентами.
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>
+                <span class="icon">🔧</span>
+                Дополнительные тесты
+            </h2>
+            
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px;">
+                <button class="btn" onclick="testNotification()">
+                    Тест уведомлений
+                </button>
+                <button class="btn btn-secondary" onclick="openSettings()">
+                    Открыть настройки
+                </button>
+                <button class="btn btn-secondary" onclick="testLanguageSwitch()">
+                    Тест смены языка
+                </button>
+                <button class="btn btn-secondary" onclick="clearAllFields()">
+                    Очистить поля
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Проверка установки расширения
+        function checkExtensionStatus() {
+            const statusElement = document.getElementById('extension-status');
+            
+            if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id) {
+                statusElement.textContent = '✅ Расширение установлено и активно';
+                statusElement.style.color = '#34a853';
+            } else {
+                statusElement.textContent = '❌ Расширение не установлено или не активно';
+                statusElement.style.color = '#ea4335';
+            }
+        }
+
+        // Тестовые функции
+        function testNotification() {
+            if (window.emailEnhancer) {
+                window.emailEnhancer.showNotification('Тестовое уведомление', 'success');
+            } else {
+                alert('Расширение не загружено');
+            }
+        }
+
+        function openSettings() {
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                chrome.runtime.openOptionsPage();
+            } else {
+                alert('Расширение не установлено');
+            }
+        }
+
+        function testLanguageSwitch() {
+            const languages = ['ru', 'en', 'es', 'pt', 'ar', 'fr'];
+            const randomLang = languages[Math.floor(Math.random() * languages.length)];
+            
+            if (window.emailEnhancer) {
+                window.emailEnhancer.currentLanguage = randomLang;
+                alert(`Язык изменен на: ${randomLang}`);
+            } else {
+                alert('Расширение не загружено');
+            }
+        }
+
+        function clearAllFields() {
+            const fields = document.querySelectorAll('.compose-area');
+            fields.forEach(field => {
+                if (field.id === 'test-compose-2') {
+                    field.textContent = 'Привет! Как дела? Я хотел бы обсудить с вами важный вопрос по поводу нашего проекта. Можем ли мы встретится завтра в 15:00? Буду ждать вашего ответа.';
+                } else if (field.id === 'test-compose-3') {
+                    field.textContent = 'Hello! How are you doing today? I hope everything is going well.';
+                } else {
+                    field.textContent = '';
+                }
+            });
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            checkExtensionStatus();
+            
+            // Проверяем статус каждые 2 секунды
+            setInterval(checkExtensionStatus, 2000);
+        });
+
+        // Слушаем события от расширения
+        document.addEventListener('emailEnhancerLoaded', function() {
+            console.log('Email Enhancer загружен');
+            checkExtensionStatus();
+        });
+    </script>
+</body>
+</html>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkExtensionStatus();
+
+            // Инициализация EmailEnhancer для тестовой страницы
+            if (window.emailEnhancer) {
+                // Если content.js уже загружен и инициализировал EmailEnhancer
+                // Мы можем вручную запустить поиск полей
+                window.emailEnhancer.providerManager.init();
+            } else {
+                // Если content.js не загружен (например, из-за ошибки в manifest.json или его отсутствии)
+                // Это сообщение должно помочь диагностировать проблему
+                console.error('Email Enhancer content script not loaded.');
+                document.getElementById('extension-status').textContent = '❌ Расширение не загружено или не активно (content script не найден)';
+                document.getElementById('extension-status').style.color = '#ea4335';
+            }
+        });
+    </script>
+</body>
+</html>

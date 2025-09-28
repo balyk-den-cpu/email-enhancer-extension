@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Email Enhancer",
+  "version": "1.0.0",
+  "description": "Улучшение работы с электронной почтой: голосовой ввод, исправление текста и AI-преобразование",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://mail.yandex.ru/*",
+    "https://mail.yandex.com/*",
+    "https://outlook.live.com/*",
+    "https://outlook.office.com/*",
+    "https://e.mail.ru/*",
+    "https://app.base44.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://mail.yandex.ru/*",
+        "https://mail.yandex.com/*",
+        "https://outlook.live.com/*",
+        "https://outlook.office.com/*",
+        "https://e.mail.ru/*",
+        "file://*/*"
+      ],
+      "js": [
+        "js/email-providers.js",
+        "content.js"
+      ],
+      "css": ["styles/content.css"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Email Enhancer",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "32": "assets/icon32.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*", "styles/*", "js/email-providers.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

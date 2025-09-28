@@ -1,0 +1,392 @@
+/* Email Enhancer Extension Styles */
+
+/* Основной контейнер расширения */
+.email-enhancer-container {
+  position: absolute;
+  z-index: 10000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  background: transparent;
+  pointer-events: none;
+}
+
+.email-enhancer-container * {
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+/* Панель инструментов */
+.email-enhancer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.email-enhancer-toolbar:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Кнопки функций */
+.email-enhancer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background: #f8f9fa;
+  color: #5f6368;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  outline: none;
+}
+
+.email-enhancer-btn:hover {
+  background: #e8f0fe;
+  color: #1a73e8;
+  transform: translateY(-1px);
+}
+
+.email-enhancer-btn:active {
+  transform: translateY(0);
+}
+
+.email-enhancer-btn.active {
+  background: #1a73e8;
+  color: white;
+}
+
+.email-enhancer-btn.recording {
+  background: #ea4335;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Иконки */
+.email-enhancer-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Выпадающие меню */
+.email-enhancer-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 200px;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+}
+
+.email-enhancer-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.email-enhancer-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.email-enhancer-dropdown-item:hover {
+  background: #f8f9fa;
+}
+
+.email-enhancer-dropdown-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.email-enhancer-dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+/* Разделители */
+.email-enhancer-separator {
+  width: 1px;
+  height: 24px;
+  background: #e1e5e9;
+  margin: 0 4px;
+}
+
+/* Индикатор загрузки */
+.email-enhancer-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #1a73e8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Тултипы */
+.email-enhancer-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #333;
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.email-enhancer-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #333;
+}
+
+.email-enhancer-btn:hover .email-enhancer-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Настройки */
+.email-enhancer-settings-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid #e1e5e9;
+}
+
+.email-enhancer-settings-btn:hover {
+  background: #f8f9fa;
+  border-color: #dadce0;
+}
+
+/* Языковой селектор */
+.email-enhancer-language-selector {
+  position: relative;
+}
+
+.email-enhancer-language-current {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #5f6368;
+  transition: all 0.2s ease;
+}
+
+.email-enhancer-language-current:hover {
+  background: #e8f0fe;
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+/* Уведомления */
+.email-enhancer-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10002;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+}
+
+.email-enhancer-notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.email-enhancer-notification.success {
+  border-left: 4px solid #34a853;
+}
+
+.email-enhancer-notification.error {
+  border-left: 4px solid #ea4335;
+}
+
+.email-enhancer-notification.warning {
+  border-left: 4px solid #fbbc04;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .email-enhancer-toolbar {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  
+  .email-enhancer-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .email-enhancer-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .email-enhancer-toolbar {
+    background: #2d2d2d;
+    border-color: #404040;
+    color: #e8eaed;
+  }
+  
+  .email-enhancer-btn {
+    background: #3c4043;
+    color: #e8eaed;
+  }
+  
+  .email-enhancer-btn:hover {
+    background: #5f6368;
+  }
+  
+  .email-enhancer-dropdown {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+  
+  .email-enhancer-dropdown-item {
+    color: #e8eaed;
+  }
+  
+  .email-enhancer-dropdown-item:hover {
+    background: #3c4043;
+  }
+}
+
+
+/* Notification Styles */
+.email-enhancer-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    transition: all 0.3s ease-out;
+}
+
+.email-enhancer-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.email-enhancer-notification.info {
+    background-color: #e0f2f7; /* Light blue */
+    color: #0277bd; /* Darker blue */
+    border: 1px solid #81d4fa;
+}
+
+.email-enhancer-notification.success {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32; /* Darker green */
+    border: 1px solid #a5d6a7;
+}
+
+.email-enhancer-notification.warning {
+    background-color: #fffde7; /* Light yellow */
+    color: #fbc02d; /* Darker yellow */
+    border: 1px solid #fff176;
+}
+
+.email-enhancer-notification.error {
+    background-color: #ffebee; /* Light red */
+    color: #c62828; /* Darker red */
+    border: 1px solid #ef9a9a;
+}
+
+.email-enhancer-notification .notification-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+}
+
+.email-enhancer-notification .notification-message {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.email-enhancer-notification .close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    margin-left: 10px;
+    padding: 0;
+    transition: opacity 0.2s ease;
+}
+
+.email-enhancer-notification .close-btn:hover {
+    opacity: 1;
+}
+

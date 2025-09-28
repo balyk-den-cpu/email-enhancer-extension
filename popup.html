@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Enhancer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 320px;
+            min-height: 400px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .popup-header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .popup-header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .popup-content {
+            padding: 20px;
+        }
+
+        .status-section {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-label {
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .status-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-badge.active {
+            background: #e6f4ea;
+            color: #137333;
+        }
+
+        .status-badge.trial {
+            background: #fef7e0;
+            color: #b06000;
+        }
+
+        .status-badge.expired {
+            background: #fce8e6;
+            color: #d93025;
+        }
+
+        .quick-actions {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 8px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .action-btn:hover {
+            background: #e8f0fe;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 6px;
+            fill: currentColor;
+        }
+
+        .action-text {
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .language-selector {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-current {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .language-current:hover {
+            border-color: #1a73e8;
+            background: #f8f9fa;
+        }
+
+        .language-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-flag {
+            font-size: 16px;
+        }
+
+        .language-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .chevron-icon {
+            width: 16px;
+            height: 16px;
+            fill: #5f6368;
+            transition: transform 0.2s ease;
+        }
+
+        .popup-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #e1e5e9;
+            background: white;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: #5f6368;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: #1a73e8;
+        }
+
+        .version-info {
+            font-size: 10px;
+            color: #9aa0a6;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .popup-content > * {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .popup-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .popup-content > *:nth-child(2) { animation-delay: 0.2s; }
+        .popup-content > *:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="popup-header">
+        <h1 data-i18n="extension_name">Email Enhancer</h1>
+        <p data-i18n="extension_tagline">Улучшение работы с электронной почтой</p>
+    </div>
+
+    <div class="popup-content">
+        <!-- Статус подписки -->
+        <div class="status-section">
+            <div class="section-title" data-i18n="subscription_status">Статус подписки</div>
+            <div class="status-item">
+                <span class="status-label" data-i18n="current_plan">Текущий план:</span>
+                <span class="status-badge trial" id="plan-badge" data-i18n="trial_period">Пробный период</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label" data-i18n="days_remaining">Дней осталось:</span>
+                <span class="status-value" id="days-remaining">7</span>
+            </div>
+        </div>
+
+        <!-- Быстрые действия -->
+        <div class="quick-actions">
+            <div class="section-title" data-i18n="quick_actions">Быстрые действия</div>
+            <div class="action-grid">
+                <div class="action-btn" id="open-gmail">
+                    <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span class="action-text" data-i18n="open_gmail">Открыть Gmail</span>
+                </div>
+
+                <div class="action-btn" id="open-settings">
+                    <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+                    </svg>
+                    <span class="action-text" data-i18n="settings">Настройки</span>
+                </div>
+
+                <div class="action-btn" id="test-voice">
+                    <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span class="action-text" data-i18n="test_voice">Тест голоса</span>
+                </div>
+
+                <div class="action-btn" id="upgrade-subscription">
+                    <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                    <span class="action-text" data-i18n="upgrade">Обновить</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Выбор языка -->
+        <div class="language-selector">
+            <div class="section-title" data-i18n="current_language">Текущий язык</div>
+            <div class="language-current" id="language-selector">
+                <div class="language-info">
+                    <span class="language-flag" id="current-flag">🇷🇺</span>
+                    <span class="language-name" id="current-language">Русский</span>
+                </div>
+                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-footer">
+        <div class="footer-links">
+            <a href="#" class="footer-link" id="help-link" data-i18n="help">Помощь</a>
+            <span class="version-info" id="version-info">v1.0.0</span>
+            <a href="#" class="footer-link" id="feedback-link" data-i18n="feedback">Отзыв</a>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/popup.js"></script>
+</body>
+</html>
