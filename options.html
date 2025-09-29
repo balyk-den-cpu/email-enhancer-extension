@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,11 +9,11 @@
 <body>
     <!-- Welcome Message -->
     <div id="welcome-message" class="welcome-overlay" style="display: none;">
-      <div class="welcome-content">
-        <h2 data-i18n="welcome_title">Добро пожаловать в Email Enhancer!</h2>
-        <p data-i18n="welcome_text">Спасибо за установку расширения. Настройте его под свои потребности.</p>
-        <button class="btn btn-primary" id="welcome-close-btn" data-i18n="understand">Понятно</button>
-      </div>
+        <div class="welcome-content">
+            <h2 data-i18n="welcome_title">Добро пожаловать в Email Enhancer!</h2>
+            <p data-i18n="welcome_text">Спасибо за установку расширения. Настройте его под свои потребности.</p>
+            <button class="btn btn-primary" id="welcome-close-btn" data-i18n="understand">Понятно</button>
+        </div>
     </div>
 
     <div class="container">
@@ -23,12 +22,177 @@
             <p data-i18n="settings_description">Настройте расширение под свои потребности</p>
         </div>
 
-        <!-- All other settings cards go here -->
+        <div class="settings-card">
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="subscription_info">Информация о подписке</span>
+                </div>
+                <div class="subscription-info">
+                    <div class="subscription-status">
+                        <h3 id="subscription-plan" data-i18n="trial_period">Пробный период</h3>
+                        <p id="subscription-details" data-i18n="subscription_expired">Подписка истекла</p>
+                    </div>
+                    <span id="subscription-badge" class="subscription-badge" data-i18n="subscription_active">Активна</span>
+                    <button id="upgrade-btn" class="btn btn-primary" type="button" data-i18n="upgrade_subscription">Обновить подписку</button>
+                </div>
+            </div>
 
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="language_settings">Языковые настройки</span>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="interface-language" data-i18n="interface_language">Язык интерфейса</label>
+                    <p class="setting-description" data-i18n="interface_language_desc">Выберите язык для отображения интерфейса расширения</p>
+                    <div class="setting-control">
+                        <div class="select-wrapper">
+                            <select id="interface-language" class="select">
+                                <option value="ru">Русский</option>
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="pt">Português</option>
+                                <option value="ar">العربية</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="default-text-language" data-i18n="default_text_language">Язык текста по умолчанию</label>
+                    <p class="setting-description" data-i18n="default_text_language_desc">Язык, который будет использоваться для обработки текста по умолчанию</p>
+                    <div class="setting-control">
+                        <div class="select-wrapper">
+                            <select id="default-text-language" class="select">
+                                <option value="ru">Русский</option>
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="pt">Português</option>
+                                <option value="ar">العربية</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="function_settings">Настройки функций</span>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="default-style" data-i18n="default_improvement_style">Стиль улучшения по умолчанию</label>
+                    <p class="setting-description" data-i18n="default_improvement_style_desc">Стиль, который будет применяться при улучшении текста по умолчанию</p>
+                    <div class="setting-control">
+                        <div class="select-wrapper">
+                            <select id="default-style" class="select">
+                                <option value="friendly" data-i18n="style_friendly">Дружелюбный</option>
+                                <option value="official" data-i18n="style_official">Официальный</option>
+                                <option value="brief" data-i18n="style_brief">Краткий</option>
+                                <option value="persuasive" data-i18n="style_persuasive">Убеждающий</option>
+                                <option value="technical" data-i18n="style_technical">Технический</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="auto-fix-enabled" data-i18n="auto_fix_enabled">Автоматическое исправление</label>
+                    <p class="setting-description" data-i18n="auto_fix_enabled_desc">Автоматически исправлять очевидные ошибки при вводе текста</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="auto-fix-enabled" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="voice-shortcuts-enabled" data-i18n="voice_shortcuts_enabled">Голосовые команды</label>
+                    <p class="setting-description" data-i18n="voice_shortcuts_enabled_desc">Включить голосовые команды для быстрого доступа к функциям</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="voice-shortcuts-enabled" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="notification_settings">Настройки уведомлений</span>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="success-notifications" data-i18n="show_success_notifications">Уведомления об успехе</label>
+                    <p class="setting-description" data-i18n="show_success_notifications_desc">Показывать уведомления при успешном выполнении операций</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="success-notifications" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="error-notifications" data-i18n="show_error_notifications">Уведомления об ошибках</label>
+                    <p class="setting-description" data-i18n="show_error_notifications_desc">Показывать уведомления при возникновении ошибок</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="error-notifications" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="advanced_settings">Дополнительные настройки</span>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="debug-mode" data-i18n="debug_mode">Режим отладки</label>
+                    <p class="setting-description" data-i18n="debug_mode_desc">Включить подробное логирование для диагностики проблем</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="debug-mode" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="data-collection" data-i18n="data_collection">Сбор данных для улучшения</label>
+                    <p class="setting-description" data-i18n="data_collection_desc">Разрешить анонимный сбор данных для улучшения качества сервиса</p>
+                    <div class="setting-control">
+                        <label class="toggle-wrapper">
+                            <input type="checkbox" id="data-collection" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">
+                    <span data-i18n="about_extension">О расширении</span>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label" data-i18n="version">Версия</span>
+                    <p id="extension-version">1.0.0</p>
+                </div>
+            </div>
+
+            <div class="settings-section save-section">
+                <div class="setting-control" style="justify-content: center; gap: 12px; flex-wrap: wrap;">
+                    <button id="save-settings" class="btn btn-primary" type="button" data-i18n="save_settings">Сохранить настройки</button>
+                    <button id="reset-settings" class="btn btn-secondary" type="button" data-i18n="reset_settings">Сбросить к умолчанию</button>
+                    <button id="export-settings" class="btn btn-secondary" type="button" data-i18n="export_settings">Экспорт настроек</button>
+                    <button id="import-settings" class="btn btn-secondary" type="button" data-i18n="import_settings">Импорт настроек</button>
+                </div>
+                <div id="save-status" class="save-status">
+                    <span id="save-message"></span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/translations.js"></script>
     <script src="js/options.js"></script>
 </body>
 </html>
-
